@@ -57,7 +57,8 @@ jobs:
           echo "Pipeline Summary"
           echo "==============================="
           if [ -f search_queries.txt ]; then
-            echo "✅ AI Generation: Completed, $(wc -l < search_queries.txt) queries generated"
+            count=$(wc -l < search_queries.txt)
+            echo "✅ AI Generation: Completed, $count queries generated"
           else
             echo "❌ AI Generation: Failed or no queries generated"
           fi
