@@ -3,101 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Dyson Airwrap i.d.™ | 2026 Pro Verdict — Full Image Slider</title>
-    <!-- Preconnect for performance -->
+    <title>Dyson Airwrap i.d.™ | 2026 Pro Verdict</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Tailwind + AOS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        /* Premium Styles + Image fit fix */
         @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #050505;
-            color: #f5f5f5;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-        
-        .luxury-font {
-            font-family: 'Playfair Display', serif;
-        }
-        
-        .gold-glow {
-            box-shadow: 0 20px 40px -12px rgba(212, 175, 55, 0.15), 0 0 0 1px rgba(212, 175, 55, 0.15) inset;
-        }
-        
-        .hover-lift {
-            transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.3s ease;
-        }
-        
-        .btn-shine {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.25s linear;
-        }
-        
-        .btn-shine:after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -60%;
-            width: 20%;
-            height: 200%;
-            background: rgba(255,255,255,0.3);
-            transform: rotate(25deg);
-            transition: all 0.6s ease;
-        }
-        
-        .btn-shine:hover:after {
-            left: 120%;
-        }
-        
-        .rating-star {
-            background: linear-gradient(135deg, #f5af19 0%, #f5af19 70%, #e2b13b 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        /* Slider transitions */
-        .slide {
-            transition: opacity 1s cubic-bezier(0.25, 0.92, 0.45, 1);
-        }
-        
-        /* Custom image container to show full 1500x1500 images without cropping */
-        .slider-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            background-color: #050505;
-        }
-        
-        ::-webkit-scrollbar {
-            width: 5px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0a0a0a;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #d4af37;
-            border-radius: 10px;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #050505; color: #f5f5f5; overflow-x: hidden; scroll-behavior: smooth; }
+        .luxury-font { font-family: 'Playfair Display', serif; }
+        .gold-glow { box-shadow: 0 20px 40px -12px rgba(212, 175, 55, 0.15), 0 0 0 1px rgba(212, 175, 55, 0.15) inset; }
+        .btn-shine { position: relative; overflow: hidden; transition: all 0.25s linear; cursor: pointer; }
+        .btn-shine:after { content: ''; position: absolute; top: -50%; left: -60%; width: 20%; height: 200%; background: rgba(255,255,255,0.3); transform: rotate(25deg); transition: all 0.6s ease; }
+        .btn-shine:hover:after { left: 120%; }
+        .rating-star { background: linear-gradient(135deg, #f5af19 0%, #f5af19 70%, #e2b13b 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .slide { transition: opacity 1s cubic-bezier(0.25, 0.92, 0.45, 1); }
+        .slider-img { width: 100%; height: 100%; object-fit: contain; background-color: #0a0a0a; }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 10px; }
     </style>
 </head>
-<body class="antialiased">
+<body>
 
-    <!-- Premium Navigation Bar -->
-    <div class="fixed top-0 left-0 w-full z-50 bg-black/70 backdrop-blur-xl border-b border-white/5 py-4 px-6 md:px-12 transition-all duration-300">
+    <!-- Navigation -->
+    <div class="fixed top-0 left-0 w-full z-50 bg-black/70 backdrop-blur-xl border-b border-white/5 py-4 px-6 md:px-12">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center gap-2">
                 <div class="w-1 h-6 bg-amber-500/80 rounded-full"></div>
@@ -113,7 +45,7 @@
 
     <main class="max-w-6xl mx-auto pt-28 pb-20 px-5 md:px-8">
 
-        <!-- Hero Headline Section -->
+        <!-- Hero Section -->
         <div class="text-center max-w-4xl mx-auto" data-aos="fade-up" data-aos-duration="900">
             <div class="inline-block mb-5 bg-white/5 backdrop-blur-sm rounded-full px-4 py-1.5 border border-white/10">
                 <span class="text-[11px] font-semibold tracking-wider text-amber-300 uppercase">★ 2026 Professional Masterclass ★</span>
@@ -129,32 +61,22 @@
             </div>
         </div>
 
-        <!-- Image Slider (Full 1500x1500 images using object-fit: contain) -->
+        <!-- Image Slider - Full 1500x1500 images visible -->
         <div class="relative mt-12 md:mt-16 flex justify-center" data-aos="zoom-in" data-aos-duration="1000">
             <div class="relative w-full max-w-3xl mx-auto overflow-hidden rounded-3xl shadow-2xl border border-white/10 gold-glow bg-black/40">
-                <!-- Slider Container -->
                 <div id="slider" class="relative h-[400px] md:h-[550px] lg:h-[600px]">
-                    <!-- Slide 1 - Local image product1-1.jpg -->
                     <div class="slide absolute inset-0 opacity-100 transition-opacity duration-1000 ease-in-out flex items-center justify-center">
-                        <img src="product1-1.jpg" 
-                             class="slider-img" 
-                             alt="Dyson Airwrap i.d. complete set">
+                        <img src="product1-1.jpg" class="slider-img" alt="Dyson Airwrap i.d. complete set">
                     </div>
-                    <!-- Slide 2 - Local image product1-2.jpg -->
                     <div class="slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out flex items-center justify-center">
-                        <img src="product1-2.jpg" 
-                             class="slider-img" 
-                             alt="Dyson Airwrap styling results">
+                        <img src="product1-2.jpg" class="slider-img" alt="Dyson Airwrap styling results">
                     </div>
-                    <!-- Slide 3 - Local image product1-3.jpg -->
                     <div class="slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out flex items-center justify-center">
-                        <img src="product1-3.jpg" 
-                             class="slider-img" 
-                             alt="Dyson Airwrap attachments and technology">
+                        <img src="product1-3.jpg" class="slider-img" alt="Dyson Airwrap attachments">
                     </div>
                 </div>
                 
-                <!-- Floating Verdict Badge -->
+                <!-- Verdict Badge -->
                 <div class="absolute bottom-6 right-6 bg-black/80 backdrop-blur-md border border-amber-500/40 rounded-2xl px-6 py-3 shadow-2xl z-10">
                     <div class="flex items-center gap-3">
                         <div class="text-3xl font-black text-amber-400">9.9</div>
@@ -164,14 +86,14 @@
                 
                 <!-- Navigation Dots -->
                 <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
-                    <div class="w-1.5 h-1.5 rounded-full bg-white/60 transition-all duration-300 cursor-pointer hover:bg-amber-400" id="dot0"></div>
-                    <div class="w-1.5 h-1.5 rounded-full bg-white/30 transition-all duration-300 cursor-pointer hover:bg-amber-400" id="dot1"></div>
-                    <div class="w-1.5 h-1.5 rounded-full bg-white/30 transition-all duration-300 cursor-pointer hover:bg-amber-400" id="dot2"></div>
+                    <div class="w-1.5 h-1.5 rounded-full bg-white/60 transition-all duration-300 cursor-pointer" id="dot0"></div>
+                    <div class="w-1.5 h-1.5 rounded-full bg-white/30 transition-all duration-300 cursor-pointer" id="dot1"></div>
+                    <div class="w-1.5 h-1.5 rounded-full bg-white/30 transition-all duration-300 cursor-pointer" id="dot2"></div>
                 </div>
             </div>
         </div>
 
-        <!-- Social Proof + Objections Columns -->
+        <!-- Features Columns -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-20" data-aos="fade-up" data-aos-delay="200">
             <div class="bg-gradient-to-br from-white/[0.03] to-white/[0.01] border border-white/10 rounded-3xl p-6 md:p-8 backdrop-blur-sm transition-all hover:border-amber-500/30">
                 <div class="flex items-center gap-2 mb-5">
@@ -199,14 +121,14 @@
             </div>
         </div>
 
-        <!-- Quick Stats -->
+        <!-- Stats -->
         <div class="mt-12 flex flex-wrap justify-center gap-6 md:gap-12 text-center" data-aos="fade-up" data-aos-delay="250">
             <div class="flex flex-col items-center"><span class="text-3xl font-black text-amber-400">94%</span><span class="text-xs uppercase tracking-wide text-gray-500">Stylists Recommend</span></div>
             <div class="flex flex-col items-center"><span class="text-3xl font-black text-amber-400">15k+</span><span class="text-xs uppercase tracking-wide text-gray-500">5-Star Ratings</span></div>
             <div class="flex flex-col items-center"><span class="text-3xl font-black text-amber-400">#1</span><span class="text-xs uppercase tracking-wide text-gray-500">Air Styler 2026</span></div>
         </div>
 
-        <!-- Key Feature Grid -->
+        <!-- Features Grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-16" data-aos="fade-up" data-aos-delay="300">
             <div class="flex flex-col items-center text-center p-5 rounded-2xl bg-white/5 border border-white/5">
                 <div class="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center text-2xl mb-3">🌀</div>
@@ -225,7 +147,7 @@
             </div>
         </div>
 
-        <!-- High Conversion CTA + Price Urgency -->
+        <!-- CTA Section - NO POPUP, clean professional button -->
         <div class="mt-20 relative" data-aos="flip-up" data-aos-duration="800">
             <div class="absolute inset-0 bg-gradient-to-r from-amber-500/10 via-transparent to-amber-500/5 rounded-3xl blur-2xl"></div>
             <div class="relative bg-[#0C0C0C] border border-amber-500/20 rounded-3xl p-8 md:p-12 shadow-2xl gold-glow">
@@ -246,19 +168,18 @@
                         </div>
                     </div>
                     <div class="w-full lg:w-auto min-w-[260px]">
-                        <!-- Demo CTA button (external links removed as requested) -->
-                        <button onclick="alert('External links removed as requested. This is a professional demo.')" 
-                           class="btn-shine relative block w-full md:w-80 py-5 bg-gradient-to-r from-white to-gray-100 text-black font-extrabold text-xl text-center rounded-2xl transition-all duration-300 hover:shadow-[0_0_25px_rgba(212,175,55,0.5)] hover:scale-[1.02] active:scale-[0.99] shadow-xl cursor-pointer">
+                        <!-- Clean button - NO alert popup, just a professional static button -->
+                        <div class="relative block w-full md:w-80 py-5 bg-gradient-to-r from-white to-gray-100 text-black font-extrabold text-xl text-center rounded-2xl transition-all duration-300 hover:shadow-[0_0_25px_rgba(212,175,55,0.5)] hover:scale-[1.02] shadow-xl cursor-pointer btn-shine">
                             CLAIM PRO DEAL → 
                             <span class="inline-block ml-2 text-amber-600">⚡</span>
-                        </button>
+                        </div>
                         <p class="text-[10px] text-center text-gray-500 mt-4 uppercase tracking-wider">Official Partner · Best Price Guaranteed</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Testimonial + Trust Badge -->
+        <!-- Testimonial -->
         <div class="mt-20 flex flex-col md:flex-row gap-8 items-start justify-between bg-black/40 rounded-3xl p-6 md:p-8 border border-white/5" data-aos="fade-up" data-aos-delay="200">
             <div class="flex-1">
                 <div class="flex items-center gap-1 mb-3">
@@ -290,14 +211,14 @@ In conclusion, the Dyson Air Styler has exceeded my expectations. It’s undoubt
             </div>
         </div>
 
-        <!-- Low Stock Alert + Fine Print -->
+        <!-- Alert & Footer -->
         <div class="mt-12 text-center flex justify-center items-center gap-2 text-xs text-gray-500 border-t border-white/5 pt-8">
             <span class="inline-block w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
             <span>🔥 Low stock alert — over 3,000 units sold this week</span>
         </div>
         <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 text-center text-[11px] text-gray-600">
             <p>✔️ Compatible with all hair types: 1A to 4C. ✔️ Voltage: universal 110-240V. ✔️ Includes storage case.</p>
-            <p>⚠️ Genuine Dyson Airwrap i.d.™ — Authorized affiliate. Prices/availability subject to change.</p>
+            <p>⚠️ Genuine Dyson Airwrap i.d.™ — Authorized retailer. Prices subject to change.</p>
         </div>
     </main>
 
@@ -306,29 +227,20 @@ In conclusion, the Dyson Air Styler has exceeded my expectations. It’s undoubt
         <p class="mt-2">*Based on internal lab testing + consumer reports 2026. Results may vary.</p>
     </footer>
 
-    <!-- Scripts: AOS + Auto-slider functionality -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize AOS animations
-        AOS.init({
-            once: true,
-            duration: 700,
-            easing: 'ease-out-quad',
-            offset: 40,
-        });
+        AOS.init({ once: true, duration: 700, easing: 'ease-out-quad', offset: 40 });
         
-        // --- Auto Image Slider with local images (product1-1, product1-2, product1-3) ---
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const totalSlides = slides.length;
         
-        // Update navigation dots
         function updateDots(index) {
             for (let i = 0; i < totalSlides; i++) {
                 const dot = document.getElementById(`dot${i}`);
                 if (dot) {
                     if (i === index) {
-                        dot.style.backgroundColor = '#fbbf24'; // amber-400
+                        dot.style.backgroundColor = '#fbbf24';
                         dot.style.width = '10px';
                         dot.style.borderRadius = '4px';
                     } else {
@@ -340,68 +252,32 @@ In conclusion, the Dyson Air Styler has exceeded my expectations. It’s undoubt
             }
         }
         
-        // Show specific slide
         function showSlide(index) {
             slides.forEach((slide, i) => {
-                if (i === index) {
-                    slide.style.opacity = '1';
-                } else {
-                    slide.style.opacity = '0';
-                }
+                slide.style.opacity = i === index ? '1' : '0';
             });
             currentSlide = index;
             updateDots(currentSlide);
         }
         
-        // Go to next slide
-        function nextSlide() {
-            let next = (currentSlide + 1) % totalSlides;
-            showSlide(next);
-        }
+        function nextSlide() { showSlide((currentSlide + 1) % totalSlides); }
         
-        // Initialize first slide
-        if (slides.length) {
-            showSlide(0);
-        }
+        if (slides.length) showSlide(0);
         
-        // Auto-rotate every 4 seconds
         let slideInterval = setInterval(nextSlide, 4000);
+        const container = document.getElementById('slider')?.parentElement;
+        if (container) {
+            container.addEventListener('mouseenter', () => clearInterval(slideInterval));
+            container.addEventListener('mouseleave', () => { slideInterval = setInterval(nextSlide, 4000); });
+        }
         
-        // Pause on hover for better UX (optional but professional)
-        const sliderContainer = document.getElementById('slider')?.parentElement;
-        if (sliderContainer) {
-            sliderContainer.addEventListener('mouseenter', () => {
+        for (let i = 0; i < totalSlides; i++) {
+            document.getElementById(`dot${i}`)?.addEventListener('click', () => {
                 clearInterval(slideInterval);
-            });
-            sliderContainer.addEventListener('mouseleave', () => {
+                showSlide(i);
                 slideInterval = setInterval(nextSlide, 4000);
             });
         }
-        
-        // Click on dots to navigate manually
-        for (let i = 0; i < totalSlides; i++) {
-            const dot = document.getElementById(`dot${i}`);
-            if (dot) {
-                dot.addEventListener('click', () => {
-                    clearInterval(slideInterval);
-                    showSlide(i);
-                    slideInterval = setInterval(nextSlide, 4000);
-                });
-            }
-        }
-        
-        // Smooth scroll for any anchor links (if needed)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href && href !== "#" && href !== "#!" && href.length > 1) {
-                    e.preventDefault();
-                    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-        
-        console.log("Slider active — using product1-1.jpg, product1-2.jpg, product1-3.jpg with object-fit: contain (full square images visible)");
     </script>
 </body>
 </html>
