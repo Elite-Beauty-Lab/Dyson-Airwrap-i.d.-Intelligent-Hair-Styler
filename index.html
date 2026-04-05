@@ -15,9 +15,10 @@
         body { font-family: 'Inter', sans-serif; background: #050505; color: #f5f5f5; overflow-x: hidden; scroll-behavior: smooth; }
         .luxury-font { font-family: 'Playfair Display', serif; }
         .gold-glow { box-shadow: 0 20px 40px -12px rgba(212, 175, 55, 0.15), 0 0 0 1px rgba(212, 175, 55, 0.15) inset; }
-        .btn-shine { position: relative; overflow: hidden; transition: all 0.25s linear; cursor: pointer; }
+        .btn-shine { position: relative; overflow: hidden; transition: all 0.25s linear; cursor: pointer; display: inline-block; text-align: center; text-decoration: none; }
         .btn-shine:after { content: ''; position: absolute; top: -50%; left: -60%; width: 20%; height: 200%; background: rgba(255,255,255,0.3); transform: rotate(25deg); transition: all 0.6s ease; }
         .btn-shine:hover:after { left: 120%; }
+        .btn-shine:hover { transform: scale(1.02); box-shadow: 0 0 25px rgba(212,175,55,0.5); }
         .rating-star { background: linear-gradient(135deg, #f5af19 0%, #f5af19 70%, #e2b13b 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
         .slide { transition: opacity 1s cubic-bezier(0.25, 0.92, 0.45, 1); }
         .slider-img { width: 100%; height: 100%; object-fit: contain; background-color: #0a0a0a; }
@@ -147,7 +148,7 @@
             </div>
         </div>
 
-        <!-- CTA Section - NO POPUP, clean professional button -->
+        <!-- CTA Section with YOUR Affiliate Link -->
         <div class="mt-20 relative" data-aos="flip-up" data-aos-duration="800">
             <div class="absolute inset-0 bg-gradient-to-r from-amber-500/10 via-transparent to-amber-500/5 rounded-3xl blur-2xl"></div>
             <div class="relative bg-[#0C0C0C] border border-amber-500/20 rounded-3xl p-8 md:p-12 shadow-2xl gold-glow">
@@ -168,11 +169,12 @@
                         </div>
                     </div>
                     <div class="w-full lg:w-auto min-w-[260px]">
-                        <!-- Clean button - NO alert popup, just a professional static button -->
-                        <div href="https://amzn.to/41KjP3E" target="_blank" class="relative block w-full md:w-80 py-5 bg-gradient-to-r from-white to-gray-100 text-black font-extrabold text-xl text-center rounded-2xl transition-all duration-300 hover:shadow-[0_0_25px_rgba(212,175,55,0.5)] hover:scale-[1.02] shadow-xl cursor-pointer btn-shine">
+                        <!-- YOUR AMAZON AFFILIATE LINK ACTIVE -->
+                        <a href="https://amzn.to/41KjP3E" target="_blank" rel="noopener noreferrer nofollow" 
+                           class="btn-shine relative block w-full md:w-80 py-5 bg-gradient-to-r from-white to-gray-100 text-black font-extrabold text-xl text-center rounded-2xl transition-all duration-300 shadow-xl">
                             CLAIM PRO DEAL → 
                             <span class="inline-block ml-2 text-amber-600">⚡</span>
-                        </div>
+                        </a>
                         <p class="text-[10px] text-center text-gray-500 mt-4 uppercase tracking-wider">Official Partner · Best Price Guaranteed</p>
                     </div>
                 </div>
@@ -211,7 +213,7 @@ In conclusion, the Dyson Air Styler has exceeded my expectations. It’s undoubt
             </div>
         </div>
 
-        <!-- Alert & Footer -->
+        <!-- Stock Alert & Footer -->
         <div class="mt-12 text-center flex justify-center items-center gap-2 text-xs text-gray-500 border-t border-white/5 pt-8">
             <span class="inline-block w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
             <span>🔥 Low stock alert — over 3,000 units sold this week</span>
