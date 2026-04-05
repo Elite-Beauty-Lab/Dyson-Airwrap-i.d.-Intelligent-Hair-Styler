@@ -20,7 +20,7 @@ jobs:
         with:
           python-version: '3.9'
 
-      # 3️⃣ تثبيت المكتبات مع الكاش لتسريع
+      # 3️⃣ تثبيت المكتبات مع الكاش لتسريع العملية
       - name: 📦 Install Dependencies
         uses: actions/cache@v3
         with:
@@ -28,7 +28,9 @@ jobs:
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
-      - run: |
+
+      - name: 🛠️ Install Packages
+        run: |
           pip install --upgrade pip
           pip install groq selenium webdriver-manager gdown playwright
           playwright install chromium
@@ -57,10 +59,9 @@ jobs:
           echo "Pipeline Summary"
           echo "==============================="
           if [ -f search_queries.txt ]; then
-            count=$(wc -l < search_queries.txt)
-            echo "✅ AI Generation: Completed, $count queries generated"
+            echo "✅ AI Generation: Completed"
           else
-            echo "❌ AI Generation: Failed or no queries generated"
+            echo "❌ AI Generation: Failed"
           fi
-          echo "✅ Chrome Simulation: Executed (headless + real profile)"
+          echo "✅ Chrome Simulation: Executed"
           echo "==============================="
