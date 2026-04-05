@@ -2,7 +2,7 @@ name: 🚦 AI-Driven Traffic Pipeline v5.1
 
 on:
   schedule:
-    - cron: '0 * * * *' # تشغيل كل ساعة
+    - cron: '0 * * * *' # Runs every hour
   workflow_dispatch:
   push:
     branches: [ main, master ]
@@ -21,16 +21,25 @@ jobs:
     timeout-minutes: 30
     
     steps:
+      # ============================================
+      # 1️⃣ Checkout Repository
+      # ============================================
       - name: 📦 Checkout Repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
-      
+
+      # ============================================
+      # 2️⃣ Setup Python
+      # ============================================
       - name: 🐍 Setup Python Runtime
         uses: actions/setup-python@v5
         with:
           python-version: '3.9'
 
+      # ============================================
+      # 3️⃣ Install Dependencies
+      # ============================================
       - name: 📥 Install Dependencies
         run: |
           echo "::group::Installing Python Packages"
@@ -38,11 +47,14 @@ jobs:
           pip install groq selenium webdriver-manager gdown playwright beautifulsoup4 requests
           playwright install chromium --with-deps
           echo "::endgroup::"
-          
+
           python -c "import groq; print('✓ Groq SDK installed')"
           python -c "import selenium; print('✓ Selenium installed')"
           python -c "import playwright; print('✓ Playwright installed')"
-      
+
+      # ============================================
+      # 4️⃣ AI Query Generation
+      # ============================================
       - name: 🧠 Generate AI Search Queries
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
@@ -58,13 +70,13 @@ jobs:
             echo "✅ AI generation completed successfully"
           else
             echo "⚠️ AI generator failed, creating fallback queries"
-            cat > search_queries.txt << EOF
-            artificial intelligence trends 2026
-            machine learning applications
-            deep learning frameworks
-            AI automation tools
-            python web scraping techniques
-            EOF
+            cat > search_queries.txt <<EOF
+artificial intelligence trends 2026
+machine learning applications
+deep learning frameworks
+AI automation tools
+python web scraping techniques
+EOF
           fi
 
           if [ -f search_queries.txt ]; then
@@ -73,7 +85,10 @@ jobs:
             head -n 3 search_queries.txt | sed 's/^/  - /'
           fi
           echo "::endgroup::"
-      
+
+      # ============================================
+      # 5️⃣ Traffic Simulation
+      # ============================================
       - name: 🚀 Execute Traffic Simulation
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
@@ -94,8 +109,15 @@ jobs:
           else
             echo "⚠️ Traffic simulation exited with code: $EXIT_CODE"
           fi
+
+          if [ -f traffic_stats.json ]; then
+            cat traffic_stats.json | python -m json.tool
+          fi
           echo "::endgroup::"
 
+      # ============================================
+      # 6️⃣ Performance Report
+      # ============================================
       - name: 📊 Performance Report
         if: always()
         run: |
@@ -104,6 +126,9 @@ jobs:
           df -h /
           echo "::endgroup::"
 
+      # ============================================
+      # 7️⃣ Archive Artifacts
+      # ============================================
       - name: 💾 Archive Artifacts
         if: always()
         uses: actions/upload-artifact@v4
@@ -115,6 +140,9 @@ jobs:
             *.json
           retention-days: 7
 
+      # ============================================
+      # 8️⃣ Cleanup
+      # ============================================
       - name: 🧹 Cleanup
         if: always()
         run: |
