@@ -20,16 +20,8 @@ jobs:
         with:
           python-version: '3.9'
 
-      # 3️⃣ تثبيت المكتبات مع الكاش لتسريع العملية
+      # 3️⃣ تثبيت المكتبات مع الكاش
       - name: 📦 Install Dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-
-      - name: 🛠️ Install Packages
         run: |
           pip install --upgrade pip
           pip install groq selenium webdriver-manager gdown playwright
@@ -51,7 +43,7 @@ jobs:
           echo "🔹 Running traffic simulation..."
           python executor.py || echo "⚠️ Traffic Executor encountered an error, continuing..."
 
-      # 6️⃣ تقرير نهائي واضح
+      # 6️⃣ تقرير نهائي
       - name: 📊 Final Report
         if: always()
         run: |
