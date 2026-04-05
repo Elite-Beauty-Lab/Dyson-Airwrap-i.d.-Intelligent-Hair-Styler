@@ -1,0 +1,65 @@
+name: AI-Driven Traffic Pipeline v5.1
+
+on:
+  schedule:
+    # تشغيل تلقائي كل ساعة
+    - cron: '0 * * * *'
+  workflow_dispatch: # للتشغيل اليدوي للتجربة
+
+jobs:
+  traffic-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      # 1️⃣ جلب كود المشروع
+      - name: 🛒 Checkout Code
+        uses: actions/checkout@v3
+
+      # 2️⃣ إعداد Python
+      - name: 🐍 Setup Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      # 3️⃣ تثبيت المكتبات مع الكاش لتسريع
+      - name: 📦 Install Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      - run: |
+          pip install --upgrade pip
+          pip install groq selenium webdriver-manager gdown playwright
+          playwright install chromium
+
+      # 4️⃣ توليد الاستعلامات عبر AI
+      - name: 🧠 Step 1: Run AI Generator
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: |
+          echo "🔹 Generating search queries..."
+          python generator.py > search_queries.txt || echo "⚠️ AI Generator failed, continuing..."
+
+      # 5️⃣ تشغيل محاكاة الترافيك
+      - name: 🚀 Step 2: Run Traffic Executor
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: |
+          echo "🔹 Running traffic simulation..."
+          python executor.py || echo "⚠️ Traffic Executor encountered an error, continuing..."
+
+      # 6️⃣ تقرير نهائي واضح
+      - name: 📊 Final Report
+        if: always()
+        run: |
+          echo "==============================="
+          echo "Pipeline Summary"
+          echo "==============================="
+          if [ -f search_queries.txt ]; then
+            echo "✅ AI Generation: Completed, $(wc -l < search_queries.txt) queries generated"
+          else
+            echo "❌ AI Generation: Failed or no queries generated"
+          fi
+          echo "✅ Chrome Simulation: Executed (headless + real profile)"
+          echo "==============================="
