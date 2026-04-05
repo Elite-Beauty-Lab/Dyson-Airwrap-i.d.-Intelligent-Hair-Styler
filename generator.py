@@ -49,8 +49,7 @@ Output only queries (one per line)
         )
 
         content = response.choices[0].message.content.strip()
-
-        # Clean output
+        # تنظيف الناتج
         queries = [q.strip("-• ").strip() for q in content.split("\n") if q.strip()]
         return queries
 
@@ -63,19 +62,16 @@ Output only queries (one per line)
 # ==============================
 def generate_for_products(products: List[str]):
     client = init_client()
-
-    all_results = {}
+    all_queries = []
 
     for product in products:
-        print(f"\n🔍 Generating for: {product}")
         queries = generate_queries(client, product)
-
+        # اطبع كل استعلام سطر بسطر بدون أي رموز إضافية
         for q in queries:
-            print(f"  → {q}")
+            print(q)
+            all_queries.append(q)
 
-        all_results[product] = queries
-
-    return all_results
+    return all_queries
 
 # ==============================
 # MAIN
@@ -87,4 +83,4 @@ if __name__ == "__main__":
         "GHD Duet Style"
     ]
 
-    results = generate_for_products(products)
+    generate_for_products(products)
