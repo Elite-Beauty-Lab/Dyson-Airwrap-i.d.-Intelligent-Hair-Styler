@@ -78,9 +78,7 @@ def generate_for_products(products: List[str]):
 # ==============================
 if __name__ == "__main__":
     products = [
-        "Dyson Airwrap i.d.",
-        "Shark FlexStyle",
-        "GHD Duet Style"
+        "Dyson Airwrap i.d.™ Multi-Styler, Allure Winner, Bluetooth Connected, No Heat Damage, 6-in-1 Versatility, Intelligent Hair Styler"
     ]
 
     generate_for_products(products)
