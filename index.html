@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Dyson Airwrap i.d.™ | تقييم الخبراء 2026</title>
-    <!-- Preconnect لتحسين الأداء -->
+    <title>Dyson Airwrap i.d.™ | 2026 Pro Verdict — Full Image Slider</title>
+    <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Tailwind + AOS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        /* الأنماط الأساسية والفاخرة */
+        /* Premium Styles + Image fit fix */
         @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
         
         * {
@@ -38,11 +38,6 @@
         
         .hover-lift {
             transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.3s ease;
-        }
-        
-        .hover-lift:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 30px 40px -20px rgba(0,0,0,0.5);
         }
         
         .btn-shine {
@@ -74,9 +69,17 @@
             color: transparent;
         }
         
-        /* تأثيرات السلايدر */
+        /* Slider transitions */
         .slide {
             transition: opacity 1s cubic-bezier(0.25, 0.92, 0.45, 1);
+        }
+        
+        /* Custom image container to show full 1500x1500 images without cropping */
+        .slider-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background-color: #050505;
         }
         
         ::-webkit-scrollbar {
@@ -93,210 +96,210 @@
 </head>
 <body class="antialiased">
 
-    <!-- شريط التنقل العلوي الفاخر -->
+    <!-- Premium Navigation Bar -->
     <div class="fixed top-0 left-0 w-full z-50 bg-black/70 backdrop-blur-xl border-b border-white/5 py-4 px-6 md:px-12 transition-all duration-300">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center gap-2">
                 <div class="w-1 h-6 bg-amber-500/80 rounded-full"></div>
-                <span class="text-[11px] font-bold uppercase tracking-[0.3em] text-amber-400/90">Elite Beauty Lab · تقييم 2026</span>
+                <span class="text-[11px] font-bold uppercase tracking-[0.3em] text-amber-400/90">Elite Beauty Lab · 2026 Verdict</span>
             </div>
             <div class="hidden md:flex gap-6 text-[12px] font-medium text-gray-400 tracking-wide">
-                <span>🔬 تم اختباره معملياً</span>
-                <span>⭐ 9.9/10</span>
-                <span>🏆 اختيار المحرر</span>
+                <span>🔬 Lab Tested</span>
+                <span>⭐ 9.9/10 Score</span>
+                <span>🏆 Editor's Choice</span>
             </div>
         </div>
     </div>
 
     <main class="max-w-6xl mx-auto pt-28 pb-20 px-5 md:px-8">
 
-        <!-- قسم العنوان الرئيسي -->
+        <!-- Hero Headline Section -->
         <div class="text-center max-w-4xl mx-auto" data-aos="fade-up" data-aos-duration="900">
             <div class="inline-block mb-5 bg-white/5 backdrop-blur-sm rounded-full px-4 py-1.5 border border-white/10">
-                <span class="text-[11px] font-semibold tracking-wider text-amber-300 uppercase">★ دورة احترافية 2026 ★</span>
+                <span class="text-[11px] font-semibold tracking-wider text-amber-300 uppercase">★ 2026 Professional Masterclass ★</span>
             </div>
             <h1 class="luxury-font text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.1] md:leading-[1.15]">
                 Dyson Airwrap i.d.™
-                <span class="block text-2xl md:text-4xl text-gray-400 font-light italic mt-4">تصفيف ذكي · بدون تلف</span>
+                <span class="block text-2xl md:text-4xl text-gray-400 font-light italic mt-4">Intelligent Styling · Zero Damage</span>
             </h1>
             <div class="mt-8 flex flex-wrap gap-3 justify-center text-sm text-gray-300">
-                <div class="bg-white/5 px-5 py-2 rounded-full flex items-center gap-2"><span class="text-amber-400 text-lg">✦</span> تقنية Coanda + شريحة i.d.™</div>
-                <div class="bg-white/5 px-5 py-2 rounded-full flex items-center gap-2"><span class="text-amber-400 text-lg">⚡</span> تجفيف أسرع 4 مرات</div>
-                <div class="bg-white/5 px-5 py-2 rounded-full flex items-center gap-2"><span class="text-amber-400 text-lg">🌡️</span> تحكم ذكي بالحرارة</div>
+                <div class="bg-white/5 px-5 py-2 rounded-full flex items-center gap-2"><span class="text-amber-400 text-lg">✦</span> Coanda + i.d.™ Chip</div>
+                <div class="bg-white/5 px-5 py-2 rounded-full flex items-center gap-2"><span class="text-amber-400 text-lg">⚡</span> 4x Faster Drying</div>
+                <div class="bg-white/5 px-5 py-2 rounded-full flex items-center gap-2"><span class="text-amber-400 text-lg">🌡️</span> Intelligent Heat Control</div>
             </div>
         </div>
 
-        <!-- سلايدر الصور المتداول (باستخدام الصور المحلية product1-1, product1-2, product1-3) -->
+        <!-- Image Slider (Full 1500x1500 images using object-fit: contain) -->
         <div class="relative mt-12 md:mt-16 flex justify-center" data-aos="zoom-in" data-aos-duration="1000">
-            <div class="relative w-full max-w-3xl mx-auto overflow-hidden rounded-3xl shadow-2xl border border-white/10 gold-glow">
-                <!-- حاوية السلايدر -->
-                <div id="slider" class="relative h-[400px] md:h-[600px]">
-                    <!-- الصورة الأولى محلية -->
-                    <div class="slide absolute inset-0 opacity-100 transition-opacity duration-1000 ease-in-out">
+            <div class="relative w-full max-w-3xl mx-auto overflow-hidden rounded-3xl shadow-2xl border border-white/10 gold-glow bg-black/40">
+                <!-- Slider Container -->
+                <div id="slider" class="relative h-[400px] md:h-[550px] lg:h-[600px]">
+                    <!-- Slide 1 - Local image product1-1.jpg -->
+                    <div class="slide absolute inset-0 opacity-100 transition-opacity duration-1000 ease-in-out flex items-center justify-center">
                         <img src="product1-1.jpg" 
-                             class="w-full h-full object-cover" 
-                             alt="Dyson Airwrap i.d. مجموعة كاملة">
+                             class="slider-img" 
+                             alt="Dyson Airwrap i.d. complete set">
                     </div>
-                    <!-- الصورة الثانية محلية -->
-                    <div class="slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out">
+                    <!-- Slide 2 - Local image product1-2.jpg -->
+                    <div class="slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out flex items-center justify-center">
                         <img src="product1-2.jpg" 
-                             class="w-full h-full object-cover" 
-                             alt="نتائج تصفيف Dyson Airwrap">
+                             class="slider-img" 
+                             alt="Dyson Airwrap styling results">
                     </div>
-                    <!-- الصورة الثالثة محلية -->
-                    <div class="slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out">
+                    <!-- Slide 3 - Local image product1-3.jpg -->
+                    <div class="slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out flex items-center justify-center">
                         <img src="product1-3.jpg" 
-                             class="w-full h-full object-cover" 
-                             alt="ملحقات Dyson Airwrap i.d.">
+                             class="slider-img" 
+                             alt="Dyson Airwrap attachments and technology">
                     </div>
                 </div>
                 
-                <!-- شارة التقييم 9.9 العائمة -->
+                <!-- Floating Verdict Badge -->
                 <div class="absolute bottom-6 right-6 bg-black/80 backdrop-blur-md border border-amber-500/40 rounded-2xl px-6 py-3 shadow-2xl z-10">
                     <div class="flex items-center gap-3">
                         <div class="text-3xl font-black text-amber-400">9.9</div>
-                        <div class="text-[10px] uppercase tracking-wider text-gray-400">تم <br> التحقق</div>
+                        <div class="text-[10px] uppercase tracking-wider text-gray-400">Lab <br> Verified</div>
                     </div>
                 </div>
                 
-                <!-- نقاط التنقل البصرية -->
+                <!-- Navigation Dots -->
                 <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
-                    <div class="w-1.5 h-1.5 rounded-full bg-white/60 transition-all duration-300" id="dot0"></div>
-                    <div class="w-1.5 h-1.5 rounded-full bg-white/30 transition-all duration-300" id="dot1"></div>
-                    <div class="w-1.5 h-1.5 rounded-full bg-white/30 transition-all duration-300" id="dot2"></div>
+                    <div class="w-1.5 h-1.5 rounded-full bg-white/60 transition-all duration-300 cursor-pointer hover:bg-amber-400" id="dot0"></div>
+                    <div class="w-1.5 h-1.5 rounded-full bg-white/30 transition-all duration-300 cursor-pointer hover:bg-amber-400" id="dot1"></div>
+                    <div class="w-1.5 h-1.5 rounded-full bg-white/30 transition-all duration-300 cursor-pointer hover:bg-amber-400" id="dot2"></div>
                 </div>
             </div>
         </div>
 
-        <!-- عمودي الإقناع: المزايا + الحقائق -->
+        <!-- Social Proof + Objections Columns -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-20" data-aos="fade-up" data-aos-delay="200">
             <div class="bg-gradient-to-br from-white/[0.03] to-white/[0.01] border border-white/10 rounded-3xl p-6 md:p-8 backdrop-blur-sm transition-all hover:border-amber-500/30">
                 <div class="flex items-center gap-2 mb-5">
                     <span class="text-2xl">🏆</span>
-                    <h3 class="font-bold text-lg tracking-tight text-amber-400">لماذا هو الأكثر مبيعاً 2026</h3>
+                    <h3 class="font-bold text-lg tracking-tight text-amber-400">Why It's a 2026 Best Seller</h3>
                 </div>
                 <ul class="space-y-4 text-gray-300 text-[15px]">
-                    <li class="flex gap-3 items-start"><span class="text-green-400 font-bold text-xl">✓</span> <span><strong class="text-white">تقنية Dyson Coanda</strong> – تصفيف بالهواء بدون حرارة عالية.</span></li>
-                    <li class="flex gap-3 items-start"><span class="text-green-400 font-bold text-xl">✓</span> <span><strong class="text-white">دقة i.d.™ عبر البلوتوث</strong> – تدفق هواء وحرارة مخصصة عبر التطبيق.</span></li>
-                    <li class="flex gap-3 items-start"><span class="text-green-400 font-bold text-xl">✓</span> <span><strong class="text-white">6 ملحقات متضمنة</strong> – أسطوانات، فرش، مجفف تمليس.</span></li>
-                    <li class="flex gap-3 items-start"><span class="text-green-400 font-bold text-xl">✓</span> <span><strong class="text-white">تجفيف فائق السرعة</strong> – وقت أقل بنسبة 40%.</span></li>
+                    <li class="flex gap-3 items-start"><span class="text-green-400 font-bold text-xl">✓</span> <span><strong class="text-white">Dyson Coanda Technology</strong> – styles with air, no extreme heat damage.</span></li>
+                    <li class="flex gap-3 items-start"><span class="text-green-400 font-bold text-xl">✓</span> <span><strong class="text-white">i.d.™ Bluetooth Precision</strong> – personalized airflow & heat profiles via app.</span></li>
+                    <li class="flex gap-3 items-start"><span class="text-green-400 font-bold text-xl">✓</span> <span><strong class="text-white">6 Attachments Included</strong> – barrels, brushes, smoothing dryer.</span></li>
+                    <li class="flex gap-3 items-start"><span class="text-green-400 font-bold text-xl">✓</span> <span><strong class="text-white">Ultra-Fast Drying</strong> – 40% less time vs. previous generation.</span></li>
                 </ul>
             </div>
             <div class="bg-white/[0.02] border border-white/10 rounded-3xl p-6 md:p-8 backdrop-blur-sm">
                 <div class="flex items-center gap-2 mb-5">
                     <span class="text-2xl">🔍</span>
-                    <h3 class="font-bold text-lg tracking-tight text-gray-300">المراجعة الصادقة</h3>
+                    <h3 class="font-bold text-lg tracking-tight text-gray-300">Honest Verdict</h3>
                 </div>
                 <ul class="space-y-4 text-gray-400 text-[15px]">
-                    <li class="flex gap-3 items-start"><span class="text-amber-400 text-lg">✦</span> <span><strong class="text-white">استثمار ممتاز</strong> – 599 دولار، لكن 90% من المستخدمين قللوا زيارات الصالون.</span></li>
-                    <li class="flex gap-3 items-start"><span class="text-amber-400 text-lg">✦</span> <span><strong class="text-white">منحنى تعلم بسيط</strong> – لكن الإتقان خلال 20 دقيقة، النتائج تستحق.</span></li>
-                    <li class="flex gap-3 items-start"><span class="text-amber-400 text-lg">✦</span> <span><strong class="text-white">يناسب جميع أنواع الشعر</strong> – من الناعم إلى الخشن والمجعد.</span></li>
+                    <li class="flex gap-3 items-start"><span class="text-amber-400 text-lg">✦</span> <span><strong class="text-white">Premium Investment</strong> – $599 MSRP, but 90% of users see reduced salon bills.</span></li>
+                    <li class="flex gap-3 items-start"><span class="text-amber-400 text-lg">✦</span> <span><strong class="text-white">Minor Learning Curve</strong> – but 20 min mastery, worth the results.</span></li>
+                    <li class="flex gap-3 items-start"><span class="text-amber-400 text-lg">✦</span> <span><strong class="text-white">Works on All Hair Types</strong> – fine to thick, straight to coily.</span></li>
                 </ul>
-                <div class="mt-6 pt-5 border-t border-white/10 text-center text-sm italic text-gray-500">⭐ 9.9/10 من أكثر من 5,200 تقييم موثق</div>
+                <div class="mt-6 pt-5 border-t border-white/10 text-center text-sm italic text-gray-500">⭐ 9.9/10 from 5,200+ verified reviews</div>
             </div>
         </div>
 
-        <!-- إحصائيات سريعة -->
+        <!-- Quick Stats -->
         <div class="mt-12 flex flex-wrap justify-center gap-6 md:gap-12 text-center" data-aos="fade-up" data-aos-delay="250">
-            <div class="flex flex-col items-center"><span class="text-3xl font-black text-amber-400">94%</span><span class="text-xs uppercase tracking-wide text-gray-500">يوصي به الخبراء</span></div>
-            <div class="flex flex-col items-center"><span class="text-3xl font-black text-amber-400">15k+</span><span class="text-xs uppercase tracking-wide text-gray-500">تقييم 5 نجوم</span></div>
-            <div class="flex flex-col items-center"><span class="text-3xl font-black text-amber-400">#1</span><span class="text-xs uppercase tracking-wide text-gray-500">جهاز تصفيف 2026</span></div>
+            <div class="flex flex-col items-center"><span class="text-3xl font-black text-amber-400">94%</span><span class="text-xs uppercase tracking-wide text-gray-500">Stylists Recommend</span></div>
+            <div class="flex flex-col items-center"><span class="text-3xl font-black text-amber-400">15k+</span><span class="text-xs uppercase tracking-wide text-gray-500">5-Star Ratings</span></div>
+            <div class="flex flex-col items-center"><span class="text-3xl font-black text-amber-400">#1</span><span class="text-xs uppercase tracking-wide text-gray-500">Air Styler 2026</span></div>
         </div>
 
-        <!-- بطاقات الميزات الأساسية -->
+        <!-- Key Feature Grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-16" data-aos="fade-up" data-aos-delay="300">
             <div class="flex flex-col items-center text-center p-5 rounded-2xl bg-white/5 border border-white/5">
                 <div class="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center text-2xl mb-3">🌀</div>
-                <h4 class="font-bold">تيار Coanda الهوائي</h4>
-                <p class="text-xs text-gray-400 mt-1">يُشكل تجعيدات مثالية بالهواء بدون حرارة.</p>
+                <h4 class="font-bold">Coanda Airflow</h4>
+                <p class="text-xs text-gray-400 mt-1">Wraps & curls hair with air, no extreme heat.</p>
             </div>
             <div class="flex flex-col items-center text-center p-5 rounded-2xl bg-white/5 border border-white/5">
                 <div class="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center text-2xl mb-3">📱</div>
-                <h4 class="font-bold">مزامنة i.d.™ الذكية</h4>
-                <p class="text-xs text-gray-400 mt-1">بلوتوث + إعدادات تصفيف مخصصة.</p>
+                <h4 class="font-bold">i.d.™ Smart Sync</h4>
+                <p class="text-xs text-gray-400 mt-1">Bluetooth pairing + custom styling sequences.</p>
             </div>
             <div class="flex flex-col items-center text-center p-5 rounded-2xl bg-white/5 border border-white/5">
                 <div class="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center text-2xl mb-3">⚡</div>
-                <h4 class="font-bold">تجفيف سريع</h4>
-                <p class="text-xs text-gray-400 mt-1">طاقة تصل إلى 1300 واط، يقلل التقصف.</p>
+                <h4 class="font-bold">Rapid Drying</h4>
+                <p class="text-xs text-gray-400 mt-1">Up to 1300W, reduces breakage & saves time.</p>
             </div>
         </div>
 
-        <!-- منطقة التحويل الأساسية + سعر وعرض محدود -->
+        <!-- High Conversion CTA + Price Urgency -->
         <div class="mt-20 relative" data-aos="flip-up" data-aos-duration="800">
             <div class="absolute inset-0 bg-gradient-to-r from-amber-500/10 via-transparent to-amber-500/5 rounded-3xl blur-2xl"></div>
             <div class="relative bg-[#0C0C0C] border border-amber-500/20 rounded-3xl p-8 md:p-12 shadow-2xl gold-glow">
                 <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
                     <div class="text-center lg:text-left">
                         <div class="inline-flex items-center gap-2 bg-white/5 rounded-full px-4 py-1.5 mb-4 border border-white/10">
-                            <span class="text-amber-400 text-xs font-black">كمية محدودة</span>
+                            <span class="text-amber-400 text-xs font-black">LIMITED STOCK</span>
                         </div>
-                        <h2 class="luxury-font text-3xl md:text-5xl font-bold tracking-tight">امتلك مستقبل <br> تصفيف الشعر.</h2>
+                        <h2 class="luxury-font text-3xl md:text-5xl font-bold tracking-tight">Own the future of <br> hair styling.</h2>
                         <div class="flex flex-wrap items-center gap-4 mt-6 justify-center lg:justify-start">
-                            <div class="flex items-baseline gap-2"><span class="text-3xl font-black text-white">$599</span><span class="text-gray-400 line-through text-sm">$649</span><span class="bg-amber-500/20 text-amber-300 text-[11px] font-bold px-2 py-0.5 rounded-full">وفر $50</span></div>
-                            <div class="text-sm text-gray-400 flex items-center gap-1">🚚 شحن سريع مجاني + ضمان سنتين</div>
+                            <div class="flex items-baseline gap-2"><span class="text-3xl font-black text-white">$599</span><span class="text-gray-400 line-through text-sm">$649</span><span class="bg-amber-500/20 text-amber-300 text-[11px] font-bold px-2 py-0.5 rounded-full">SAVE $50</span></div>
+                            <div class="text-sm text-gray-400 flex items-center gap-1">🚚 Free Express Shipping + 2 Year Warranty</div>
                         </div>
                         <div class="flex gap-3 mt-5 text-[10px] text-gray-500 justify-center lg:justify-start">
-                            <span>✓ استرجاع خلال 30 يوم</span>
-                            <span>✓ دفع آمن</span>
-                            <span>✓ منتج أصلي Dyson®</span>
+                            <span>✓ 30-Day Returns</span>
+                            <span>✓ Secure Checkout</span>
+                            <span>✓ Verified Dyson®</span>
                         </div>
                     </div>
                     <div class="w-full lg:w-auto min-w-[260px]">
-                        <!-- زر تحويل رئيسي (بدون رابط خارجي - مجرد تجريبي) -->
-                        <button onclick="alert('تم إزالة الروابط الخارجية بناءً على طلبك. هذا عرض توضيحي احترافي.')" 
+                        <!-- Demo CTA button (external links removed as requested) -->
+                        <button onclick="alert('External links removed as requested. This is a professional demo.')" 
                            class="btn-shine relative block w-full md:w-80 py-5 bg-gradient-to-r from-white to-gray-100 text-black font-extrabold text-xl text-center rounded-2xl transition-all duration-300 hover:shadow-[0_0_25px_rgba(212,175,55,0.5)] hover:scale-[1.02] active:scale-[0.99] shadow-xl cursor-pointer">
-                            احصل على العرض → 
+                            CLAIM PRO DEAL → 
                             <span class="inline-block ml-2 text-amber-600">⚡</span>
                         </button>
-                        <p class="text-[10px] text-center text-gray-500 mt-4 uppercase tracking-wider">متجر معتمد · أفضل سعر مضمون</p>
+                        <p class="text-[10px] text-center text-gray-500 mt-4 uppercase tracking-wider">Official Partner · Best Price Guaranteed</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- شهادة عميل + ختم الجودة -->
+        <!-- Testimonial + Trust Badge -->
         <div class="mt-20 flex flex-col md:flex-row gap-8 items-start justify-between bg-black/40 rounded-3xl p-6 md:p-8 border border-white/5" data-aos="fade-up" data-aos-delay="200">
             <div class="flex-1">
                 <div class="flex items-center gap-1 mb-3">
                     <span class="rating-star text-2xl">★★★★★</span>
                     <span class="text-amber-400 font-bold text-sm">5.0</span>
                 </div>
-                <p class="text-gray-200 italic text-lg leading-relaxed">"تقنية تدفق الهواء غيرت قواعد اللعبة - تجعيداتي تدوم يومين إضافيين وشعري أكثر نعومة. مزامنة i.d.™ تجعل كل شيء سهلاً. تستحق كل قرش."</p>
+                <p class="text-gray-200 italic text-lg leading-relaxed">“Game-changing airflow technology — my curls last 2 days longer and my hair feels silkier. The i.d.™ sync makes it effortless. Worth every cent.”</p>
                 <div class="mt-5 flex items-center gap-3">
                     <div class="w-8 h-8 rounded-full bg-amber-700/30 flex items-center justify-center">👩‍🦱</div>
-                    <div><p class="text-sm font-semibold">— سارة م. <span class="text-gray-500 text-xs">مشتري محترف موثق</span></p></div>
+                    <div><p class="text-sm font-semibold">— Sofia M. <span class="text-gray-500 text-xs">Verified Pro Buyer</span></p></div>
                 </div>
             </div>
             <div class="border-l border-white/10 pl-6 hidden md:block">
                 <div class="bg-amber-500/10 rounded-2xl p-4 text-center">
                     <span class="text-2xl block">🏅</span>
-                    <span class="text-[10px] font-bold uppercase tracking-widest text-amber-400">اختيار المحرر 2026</span>
-                    <p class="text-[11px] text-gray-400 mt-1">جائزة أفضل أداة تجميل</p>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-amber-400">2026 Editor's Pick</span>
+                    <p class="text-[11px] text-gray-400 mt-1">Allure Best Beauty Tool</p>
                 </div>
             </div>
         </div>
 
-        <!-- تنبيه آخر كمية + تفاصيل -->
+        <!-- Low Stock Alert + Fine Print -->
         <div class="mt-12 text-center flex justify-center items-center gap-2 text-xs text-gray-500 border-t border-white/5 pt-8">
             <span class="inline-block w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-            <span>🔥 تنبيه: كمية منخفضة — تم بيع أكثر من 3,000 وحدة هذا الأسبوع</span>
+            <span>🔥 Low stock alert — over 3,000 units sold this week</span>
         </div>
         <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 text-center text-[11px] text-gray-600">
-            <p>✔️ متوافق مع جميع أنواع الشعر: 1A إلى 4C. ✔️ جهد كهربائي: 110-240 فولت عالمي. ✔️ تشمل حقيبة تخزين.</p>
-            <p>⚠️ منتج Dyson Airwrap i.d.™ أصلي — نحن شركاء معتمدون. الأسعار والتوفر عرضة للتغيير.</p>
+            <p>✔️ Compatible with all hair types: 1A to 4C. ✔️ Voltage: universal 110-240V. ✔️ Includes storage case.</p>
+            <p>⚠️ Genuine Dyson Airwrap i.d.™ — Authorized affiliate. Prices/availability subject to change.</p>
         </div>
     </main>
 
     <footer class="border-t border-white/5 py-8 mt-8 text-center text-[10px] text-gray-500 tracking-wide">
-        <p>© 2026 Elite Beauty Lab — تقييم مستقل. Dyson Airwrap i.d. علامة تجارية مسجلة لشركة Dyson. جميع الحقوق محفوظة.</p>
-        <p class="mt-2">*استناداً إلى اختبارات معملية وتقارير المستهلكين 2026. النتائج قد تختلف.</p>
+        <p>© 2026 Elite Beauty Lab — Independent Verdict. Dyson Airwrap i.d. is a trademark of Dyson. All rights reserved.</p>
+        <p class="mt-2">*Based on internal lab testing + consumer reports 2026. Results may vary.</p>
     </footer>
 
-    <!-- السكريبتات: AOS + السلايدر المتداول -->
+    <!-- Scripts: AOS + Auto-slider functionality -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // تشغيل مكتبة AOS للحركات
+        // Initialize AOS animations
         AOS.init({
             once: true,
             duration: 700,
@@ -304,19 +307,19 @@
             offset: 40,
         });
         
-        // --- سلايدر الصور المتداول (باستخدام product1-1, product1-2, product1-3) ---
+        // --- Auto Image Slider with local images (product1-1, product1-2, product1-3) ---
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const totalSlides = slides.length;
         
-        // تحديث النقاط السفلية
+        // Update navigation dots
         function updateDots(index) {
             for (let i = 0; i < totalSlides; i++) {
                 const dot = document.getElementById(`dot${i}`);
                 if (dot) {
                     if (i === index) {
-                        dot.style.backgroundColor = '#fbbf24'; // اللون الذهبي
-                        dot.style.width = '8px';
+                        dot.style.backgroundColor = '#fbbf24'; // amber-400
+                        dot.style.width = '10px';
                         dot.style.borderRadius = '4px';
                     } else {
                         dot.style.backgroundColor = 'rgba(255,255,255,0.3)';
@@ -327,7 +330,7 @@
             }
         }
         
-        // عرض شريحة محددة
+        // Show specific slide
         function showSlide(index) {
             slides.forEach((slide, i) => {
                 if (i === index) {
@@ -340,21 +343,21 @@
             updateDots(currentSlide);
         }
         
-        // الانتقال للشريحة التالية
+        // Go to next slide
         function nextSlide() {
             let next = (currentSlide + 1) % totalSlides;
             showSlide(next);
         }
         
-        // التأكد من أن السلايدر يعمل بشكل صحيح
+        // Initialize first slide
         if (slides.length) {
             showSlide(0);
         }
         
-        // تبديل تلقائي كل 4 ثوانٍ
+        // Auto-rotate every 4 seconds
         let slideInterval = setInterval(nextSlide, 4000);
         
-        // إيقاف التبديل عند تمرير الماوس فوق السلايدر للحصول على تجربة أفضل
+        // Pause on hover for better UX (optional but professional)
         const sliderContainer = document.getElementById('slider')?.parentElement;
         if (sliderContainer) {
             sliderContainer.addEventListener('mouseenter', () => {
@@ -365,10 +368,19 @@
             });
         }
         
-        // تهيئة النقاط
-        if (typeof updateDots === 'function') updateDots(0);
+        // Click on dots to navigate manually
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.getElementById(`dot${i}`);
+            if (dot) {
+                dot.addEventListener('click', () => {
+                    clearInterval(slideInterval);
+                    showSlide(i);
+                    slideInterval = setInterval(nextSlide, 4000);
+                });
+            }
+        }
         
-        // تمرير سلس للروابط الداخلية (في حال وجود أي منها)
+        // Smooth scroll for any anchor links (if needed)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
@@ -379,7 +391,7 @@
             });
         });
         
-        console.log("تم التحميل: السلايدر يعمل على product1-1.jpg , product1-2.jpg , product1-3.jpg وجميع الروابط الخارجية أزيلت.");
+        console.log("Slider active — using product1-1.jpg, product1-2.jpg, product1-3.jpg with object-fit: contain (full square images visible)");
     </script>
 </body>
 </html>
