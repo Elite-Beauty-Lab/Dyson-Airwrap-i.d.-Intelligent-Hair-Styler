@@ -26,7 +26,7 @@ jobs:
       # 1️⃣ SOURCE CODE CHECKOUT
       # ============================================
       - name: 📦 Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 1
       
@@ -34,13 +34,13 @@ jobs:
       # 2️⃣ PYTHON ENVIRONMENT SETUP
       # ============================================
       - name: 🐍 Setup Python Runtime
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.9'
           cache: 'pip'
       
       - name: 💾 Cache Dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: pip-cache
         with:
           path: ~/.cache/pip
@@ -62,8 +62,8 @@ jobs:
           
           # Verify installations
           echo "✅ Dependencies installed successfully"
-          python -c "import groq; print('✓ Groq SDK:', groq.__version__)"
-          python -c "import selenium; print('✓ Selenium:', selenium.__version__)"
+          python -c "import groq; print('✓ Groq SDK installed')"
+          python -c "import selenium; print('✓ Selenium installed')"
           python -c "import playwright; print('✓ Playwright installed')"
         continue-on-error: false
       
@@ -156,7 +156,7 @@ jobs:
           fi
           
           echo "::endgroup::"
-        continue-on-error: true  # Don't fail the workflow if traffic simulation has issues
+        continue-on-error: true
       
       # ============================================
       # 6️⃣ PERFORMANCE METRICS
@@ -168,18 +168,12 @@ jobs:
           echo "::group::📈 Performance Metrics"
           
           # Calculate execution time
-          START_TIME="${{ steps.traffic-executor.start }}"
-          END_TIME="${{ steps.traffic-executor.end }}"
-          
-          # Memory usage
           echo "💾 Memory Usage:"
           free -h
           
-          # Disk usage
           echo "💿 Disk Usage:"
           df -h /
           
-          # Process information
           echo "🔄 Running Processes:"
           ps aux --sort=-%cpu | head -10
           
@@ -257,20 +251,21 @@ jobs:
           echo "::endgroup::"
       
       # ============================================
-      # 8️⃣ ARTIFACT ARCHIVING
+      # 8️⃣ ARCHIVE PIPELINE ARTIFACTS (FIXED v4)
       # ============================================
       - name: 💾 Archive Pipeline Artifacts
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: traffic-pipeline-logs
+          name: traffic-pipeline-logs-${{ github.run_id }}
           path: |
             *.log
             *.txt
             *.json
             traffic_stats.json
           retention-days: 7
-          if-no-files-found: ignore
+          if-no-files-found: warn
+          compression-level: 6
       
       # ============================================
       # 9️⃣ NOTIFICATION (Optional)
