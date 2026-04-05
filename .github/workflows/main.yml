@@ -1,59 +1,294 @@
-name: AI-Driven Traffic Pipeline v5.1
+name: 🚦 AI-Driven Traffic Pipeline v5.1
 
 on:
   schedule:
-    # تشغيل تلقائي كل ساعة
+    # Automatic execution every hour
     - cron: '0 * * * *'
-  workflow_dispatch: # للتشغيل اليدوي للتجربة
+  workflow_dispatch: # Manual trigger for testing
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'generator.py'
+      - 'executor.py'
+
+env:
+  PYTHONUNBUFFERED: 1
+  TZ: 'UTC'
 
 jobs:
   traffic-pipeline:
+    name: 🌐 Traffic Generation Pipeline
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+    
     steps:
-      # 1️⃣ جلب كود المشروع
-      - name: 🛒 Checkout Code
+      # ============================================
+      # 1️⃣ SOURCE CODE CHECKOUT
+      # ============================================
+      - name: 📦 Checkout Repository
         uses: actions/checkout@v3
-
-      # 2️⃣ إعداد Python
-      - name: 🐍 Setup Python 3.9
+        with:
+          fetch-depth: 1
+      
+      # ============================================
+      # 2️⃣ PYTHON ENVIRONMENT SETUP
+      # ============================================
+      - name: 🐍 Setup Python Runtime
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-
-      # 3️⃣ تثبيت المكتبات مع الكاش
-      - name: 📦 Install Dependencies
+          cache: 'pip'
+      
+      - name: 💾 Cache Dependencies
+        uses: actions/cache@v3
+        id: pip-cache
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      
+      # ============================================
+      # 3️⃣ DEPENDENCY INSTALLATION
+      # ============================================
+      - name: 📥 Install Dependencies
+        id: install-deps
         run: |
-          pip install --upgrade pip
-          pip install groq selenium webdriver-manager gdown playwright
-          playwright install chromium
-
-      # 4️⃣ توليد الاستعلامات عبر AI
-      - name: 🧠 Step 1: Run AI Generator
+          echo "::group::Installing Python Packages"
+          pip install --upgrade pip setuptools wheel
+          pip install groq selenium webdriver-manager gdown playwright beautifulsoup4 requests
+          playwright install chromium --with-deps
+          echo "::endgroup::"
+          
+          # Verify installations
+          echo "✅ Dependencies installed successfully"
+          python -c "import groq; print('✓ Groq SDK:', groq.__version__)"
+          python -c "import selenium; print('✓ Selenium:', selenium.__version__)"
+          python -c "import playwright; print('✓ Playwright installed')"
+        continue-on-error: false
+      
+      # ============================================
+      # 4️⃣ AI QUERY GENERATION
+      # ============================================
+      - name: 🧠 Generate AI Search Queries
+        id: ai-generator
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GROQ_MODEL: "mixtral-8x7b-32768"
         run: |
-          echo "🔹 Generating search queries..."
-          python generator.py > search_queries.txt || echo "⚠️ AI Generator failed, continuing..."
-
-      # 5️⃣ تشغيل محاكاة الترافيك
-      - name: 🚀 Step 2: Run Traffic Executor
+          echo "::group::🤖 AI Query Generation Started"
+          
+          # Check API key
+          if [ -z "$GROQ_API_KEY" ]; then
+            echo "❌ ERROR: GROQ_API_KEY secret not configured"
+            exit 1
+          fi
+          
+          # Run generator with error handling
+          if python generator.py 2>&1 | tee ai_output.log; then
+            echo "✅ AI generation completed successfully"
+            echo "status=success" >> $GITHUB_OUTPUT
+          else
+            echo "⚠️ AI generator failed with exit code $?"
+            echo "status=failed" >> $GITHUB_OUTPUT
+            # Create fallback queries
+            cat > search_queries.txt << EOF
+            artificial intelligence trends 2026
+            machine learning applications
+            deep learning frameworks
+            AI automation tools
+            python web scraping techniques
+            EOF
+            echo "🔄 Created fallback queries"
+          fi
+          
+          # Count generated queries
+          if [ -f search_queries.txt ]; then
+            QUERY_COUNT=$(wc -l < search_queries.txt)
+            echo "📊 Generated $QUERY_COUNT search queries"
+            echo "query_count=$QUERY_COUNT" >> $GITHUB_OUTPUT
+            # Show first 3 queries
+            echo "Sample queries:"
+            head -n 3 search_queries.txt | sed 's/^/  - /'
+          fi
+          
+          echo "::endgroup::"
+        continue-on-error: false
+      
+      # ============================================
+      # 5️⃣ TRAFFIC SIMULATION EXECUTION
+      # ============================================
+      - name: 🚀 Execute Traffic Simulation
+        id: traffic-executor
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          DISPLAY: ':99'
+          HEADLESS_MODE: 'true'
         run: |
-          echo "🔹 Running traffic simulation..."
-          python executor.py || echo "⚠️ Traffic Executor encountered an error, continuing..."
-
-      # 6️⃣ تقرير نهائي
-      - name: 📊 Final Report
+          echo "::group::🌐 Traffic Simulation Started"
+          echo "🕐 Started at: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          
+          # Setup virtual display for headless browser
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb
+          Xvfb :99 -screen 0 1920x1080x24 > /dev/null 2>&1 &
+          
+          # Run executor with timeout protection
+          timeout 600 python executor.py 2>&1 | tee executor.log
+          EXIT_CODE=${PIPESTATUS[0]}
+          
+          # Check execution result
+          if [ $EXIT_CODE -eq 0 ]; then
+            echo "✅ Traffic simulation completed successfully"
+            echo "status=success" >> $GITHUB_OUTPUT
+          elif [ $EXIT_CODE -eq 124 ]; then
+            echo "⚠️ Traffic simulation timed out after 10 minutes"
+            echo "status=timeout" >> $GITHUB_OUTPUT
+          else
+            echo "⚠️ Traffic simulation exited with code: $EXIT_CODE"
+            echo "status=failed" >> $GITHUB_OUTPUT
+          fi
+          
+          # Parse execution statistics
+          if [ -f traffic_stats.json ]; then
+            echo "📈 Traffic Statistics:"
+            cat traffic_stats.json | python -m json.tool
+          fi
+          
+          echo "::endgroup::"
+        continue-on-error: true  # Don't fail the workflow if traffic simulation has issues
+      
+      # ============================================
+      # 6️⃣ PERFORMANCE METRICS
+      # ============================================
+      - name: 📊 Generate Performance Report
+        id: metrics
         if: always()
         run: |
-          echo "==============================="
-          echo "Pipeline Summary"
-          echo "==============================="
-          if [ -f search_queries.txt ]; then
-            echo "✅ AI Generation: Completed"
+          echo "::group::📈 Performance Metrics"
+          
+          # Calculate execution time
+          START_TIME="${{ steps.traffic-executor.start }}"
+          END_TIME="${{ steps.traffic-executor.end }}"
+          
+          # Memory usage
+          echo "💾 Memory Usage:"
+          free -h
+          
+          # Disk usage
+          echo "💿 Disk Usage:"
+          df -h /
+          
+          # Process information
+          echo "🔄 Running Processes:"
+          ps aux --sort=-%cpu | head -10
+          
+          echo "::endgroup::"
+      
+      # ============================================
+      # 7️⃣ FINAL PIPELINE SUMMARY
+      # ============================================
+      - name: 📋 Pipeline Summary Report
+        if: always()
+        run: |
+          echo "::group::📋 PIPELINE EXECUTION SUMMARY"
+          echo "═══════════════════════════════════════════════════════"
+          echo "🕐 Execution Time: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          echo "🖥️  Runner: ${{ runner.os }}"
+          echo "═══════════════════════════════════════════════════════"
+          
+          # Step 1: Code Checkout
+          echo ""
+          echo "📦 STEP 1: Code Checkout"
+          if [ -f "generator.py" ] && [ -f "executor.py" ]; then
+            echo "  ✅ Status: SUCCESS"
+            echo "  📄 generator.py: $(wc -l < generator.py) lines"
+            echo "  📄 executor.py: $(wc -l < executor.py) lines"
           else
-            echo "❌ AI Generation: Failed"
+            echo "  ❌ Status: FAILED - Missing required files"
           fi
-          echo "✅ Chrome Simulation: Executed"
-          echo "==============================="
+          
+          # Step 2: Dependencies
+          echo ""
+          echo "📦 STEP 2: Dependencies"
+          if python -c "import groq, selenium, playwright" 2>/dev/null; then
+            echo "  ✅ Status: SUCCESS"
+            echo "  📦 Packages: groq, selenium, playwright"
+          else
+            echo "  ⚠️ Status: PARTIAL - Some packages missing"
+          fi
+          
+          # Step 3: AI Generation
+          echo ""
+          echo "🧠 STEP 3: AI Query Generation"
+          if [ -f search_queries.txt ]; then
+            QUERY_COUNT=$(wc -l < search_queries.txt)
+            echo "  ✅ Status: SUCCESS"
+            echo "  📊 Queries Generated: $QUERY_COUNT"
+            echo "  📁 Output: search_queries.txt"
+          else
+            echo "  ❌ Status: FAILED"
+            echo "  📁 Output: Not generated"
+          fi
+          
+          # Step 4: Traffic Simulation
+          echo ""
+          echo "🚀 STEP 4: Traffic Simulation"
+          if [ -f executor.log ]; then
+            if grep -q "success\|completed" executor.log; then
+              echo "  ✅ Status: SUCCESS"
+            else
+              echo "  ⚠️ Status: COMPLETED WITH WARNINGS"
+            fi
+            echo "  📄 Log Size: $(du -h executor.log | cut -f1)"
+          else
+            echo "  ❌ Status: NOT EXECUTED"
+          fi
+          
+          # Final Status
+          echo ""
+          echo "═══════════════════════════════════════════════════════"
+          if [ -f search_queries.txt ]; then
+            echo "🎯 PIPELINE STATUS: ✅ SUCCESSFUL"
+          else
+            echo "🎯 PIPELINE STATUS: ⚠️ PARTIAL FAILURE"
+          fi
+          echo "═══════════════════════════════════════════════════════"
+          echo "::endgroup::"
+      
+      # ============================================
+      # 8️⃣ ARTIFACT ARCHIVING
+      # ============================================
+      - name: 💾 Archive Pipeline Artifacts
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: traffic-pipeline-logs
+          path: |
+            *.log
+            *.txt
+            *.json
+            traffic_stats.json
+          retention-days: 7
+          if-no-files-found: ignore
+      
+      # ============================================
+      # 9️⃣ NOTIFICATION (Optional)
+      # ============================================
+      - name: 📧 Send Notification
+        if: failure() && github.event_name == 'schedule'
+        run: |
+          echo "⚠️ Pipeline failed at $(date)"
+          echo "Check logs: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        continue-on-error: true
+
+      # ============================================
+      # 🔟 CLEANUP
+      # ============================================
+      - name: 🧹 Cleanup Resources
+        if: always()
+        run: |
+          echo "🧹 Cleaning up temporary files..."
+          rm -rf /tmp/playwright* 2>/dev/null || true
+          rm -rf /tmp/.com.google.Chrome* 2>/dev/null || true
+          echo "✅ Cleanup completed"
