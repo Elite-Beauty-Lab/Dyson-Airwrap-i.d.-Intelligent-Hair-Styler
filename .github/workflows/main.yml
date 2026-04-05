@@ -63,3 +63,4 @@ jobs:
           fi
           echo "✅ Chrome Simulation: Executed (headless + real profile)"
           echo "==============================="
+          
